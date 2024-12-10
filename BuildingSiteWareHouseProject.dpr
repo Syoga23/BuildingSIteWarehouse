@@ -2,13 +2,16 @@ program BuildingSiteWareHouseProject;
 
 uses
   Vcl.Forms,
-  MainUnit in 'MainUnit.pas' {Form2};
+  MainUnit in 'MainUnit.pas' {MainForm},
+  ConnectUnit in 'ConnectUnit.pas' {ConnectForm},
+  BDUnit in 'BDUnit.pas' {BDModule: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TBDModule, BDModule);
+  Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.
