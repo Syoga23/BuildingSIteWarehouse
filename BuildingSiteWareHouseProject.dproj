@@ -113,6 +113,22 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="CountriesNamesRef.pas">
+            <Form>Countries</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="MaterialTypesRef.pas">
+            <Form>MaterialTypes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="MeasuresRef.pas">
+            <Form>Measures</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="PostsRef.pas">
+            <Form>Posts</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

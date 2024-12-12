@@ -46,7 +46,7 @@ object ConnectForm: TConnectForm
     end
     object LoginButton: TButton
       Left = 295
-      Top = 34
+      Top = 33
       Width = 105
       Height = 25
       Caption = #1055#1086#1076#1082#1083#1102#1095#1080#1090#1100#1089#1103
