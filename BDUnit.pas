@@ -49,11 +49,20 @@ type
     N7: TMenuItem;
     N8: TMenuItem;
     MaterialsSQLMaterialType: TStringField;
+    H1: TMenuItem;
+    MaterialsSQLMeasures: TStringField;
+    V1: TMenuItem;
+    MaterialsSQLName: TStringField;
+    DSNamesDialog: TDataSource;
+    NamesDialogSQL: TADOQuery;
+    IntegerField1: TIntegerField;
+    WideStringField1: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure N5Click(Sender: TObject);
     procedure N6Click(Sender: TObject);
     procedure N7Click(Sender: TObject);
     procedure N8Click(Sender: TObject);
+    procedure MaterialNamesDSDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -103,6 +112,13 @@ if (Not FileExists(ConfigPath))
 end;
 
 
+
+procedure TBDModule.MaterialNamesDSDataChange(Sender: TObject; Field: TField);
+begin
+MaterialsSQL.Close;
+MaterialsSQL.Parameters.ParamByName('NameKey').Value := MaterialNamesSQL.FieldByName('Name_Id').Value;
+MaterialsSQL.Open;
+end;
 
 procedure TBDModule.N5Click(Sender: TObject);
 begin

@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, ConnectUnit,
   BDUnit, Data.DB, Vcl.ToolWin, Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids,
-  Vcl.DBCtrls, Vcl.Mask, System.ImageList, Vcl.ImgList;
+  Vcl.DBCtrls, Vcl.Mask, System.ImageList, Vcl.ImgList, MaterialNamesUnit,
+  MaterialsDialog;
 
 type
   TMainForm = class(TForm)
@@ -51,11 +52,15 @@ type
     TabSheet5: TTabSheet;
     DBGrid5: TDBGrid;
     Label12: TLabel;
+    PencilButtonNames: TButton;
+    Button1: TButton;
     procedure FormShow(Sender: TObject);
+    procedure PencilButtonNamesClick(Sender: TObject);
+    procedure NamesRefButtonClick(Sender: TObject);
   private
 
   public
-    { Public declarations }
+
   end;
 
 var
@@ -74,6 +79,7 @@ begin
   BDModule.CountriesSQL.Active:= true;
   BDModule.MeasureTypesSQL.Active:= true;
   BDModule.MaterialTypesSQL.Active:= true;
+  BDModule.NamesDialogSQL.Active:= true;
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
@@ -83,6 +89,16 @@ begin
   closeVar:=ConnectForm.closeVar;
   if(closeVar = 0) then Application.Terminate;
   ActivateQueries();
+end;
+
+procedure TMainForm.NamesRefButtonClick(Sender: TObject);
+begin
+  MaterialNamesDialog.ShowModal();
+end;
+
+procedure TMainForm.PencilButtonNamesClick(Sender: TObject);
+begin
+  MaterialNames.Show();
 end;
 
 end.

@@ -129,6 +129,14 @@
             <Form>Posts</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="MaterialNamesUnit.pas">
+            <Form>MaterialNames</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="MaterialsDialog.pas">
+            <Form>MaterialNamesDialog</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

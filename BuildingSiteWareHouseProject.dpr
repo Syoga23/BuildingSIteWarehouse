@@ -8,7 +8,9 @@ uses
   CountriesNamesRef in 'CountriesNamesRef.pas' {Countries},
   MaterialTypesRef in 'MaterialTypesRef.pas' {MaterialTypes},
   MeasuresRef in 'MeasuresRef.pas' {Measures},
-  PostsRef in 'PostsRef.pas' {Posts};
+  PostsRef in 'PostsRef.pas' {Posts},
+  MaterialNamesUnit in 'MaterialNamesUnit.pas' {MaterialNames},
+  MaterialsDialog in 'MaterialsDialog.pas' {MaterialNamesDialog};
 
 {$R *.res}
 
@@ -21,5 +23,7 @@ begin
   Application.CreateForm(TMaterialTypes, MaterialTypes);
   Application.CreateForm(TMeasures, Measures);
   Application.CreateForm(TPosts, Posts);
+  Application.CreateForm(TMaterialNames, MaterialNames);
+  Application.CreateForm(TMaterialNamesDialog, MaterialNamesDialog);
   Application.Run;
 end.
