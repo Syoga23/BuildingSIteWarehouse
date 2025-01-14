@@ -16,23 +16,24 @@ object MainForm: TMainForm
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 241
-    Top = 29
-    Height = 768
+    Top = 0
+    Height = 797
     ExplicitLeft = 472
     ExplicitTop = 360
     ExplicitHeight = 100
   end
   object LeftPanel: TPanel
     Left = 0
-    Top = 29
+    Top = 0
     Width = 241
-    Height = 768
+    Height = 797
     Align = alLeft
     TabOrder = 0
+    ExplicitTop = 29
     ExplicitHeight = 767
     DesignSize = (
       241
-      768)
+      797)
     object Label2: TLabel
       AlignWithMargins = True
       Left = 4
@@ -47,7 +48,7 @@ object MainForm: TMainForm
       Left = 1
       Top = 22
       Width = 239
-      Height = 745
+      Height = 774
       Align = alClient
       DataSource = BDModule.MaterialNamesDS
       Options = [dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -83,11 +84,12 @@ object MainForm: TMainForm
   end
   object RightPanelAll: TPanel
     Left = 244
-    Top = 29
+    Top = 0
     Width = 906
-    Height = 768
+    Height = 797
     Align = alClient
     TabOrder = 1
+    ExplicitTop = 29
     ExplicitWidth = 902
     ExplicitHeight = 767
     object Splitter2: TSplitter
@@ -225,6 +227,7 @@ object MainForm: TMainForm
         Height = 170
         DataField = 'Photo'
         DataSource = BDModule.MaterialsDS
+        Stretch = True
         TabOrder = 6
       end
       object Button2: TButton
@@ -240,6 +243,7 @@ object MainForm: TMainForm
         Font.Style = []
         ParentFont = False
         TabOrder = 7
+        OnClick = Button2Click
       end
       object Button3: TButton
         Left = 800
@@ -254,6 +258,7 @@ object MainForm: TMainForm
         Font.Style = []
         ParentFont = False
         TabOrder = 8
+        OnClick = Button3Click
       end
       object CountryRefButton: TButton
         Left = 424
@@ -305,8 +310,8 @@ object MainForm: TMainForm
       Left = 1
       Top = 244
       Width = 904
-      Height = 523
-      ActivePage = TabSheet5
+      Height = 552
+      ActivePage = TabSheet3
       Align = alClient
       BiDiMode = bdLeftToRight
       MultiLine = True
@@ -314,6 +319,7 @@ object MainForm: TMainForm
       TabOrder = 1
       TabPosition = tpBottom
       StyleElements = [seFont, seClient]
+      ExplicitHeight = 523
       object TabSheet1: TTabSheet
         Caption = #1058#1086#1074#1072#1088#1099
         ImageIndex = 5
@@ -331,7 +337,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 21
           Width = 896
-          Height = 474
+          Height = 503
           Align = alClient
           DataSource = BDModule.MaterialsDS
           TabOrder = 0
@@ -361,13 +367,11 @@ object MainForm: TMainForm
             item
               Expanded = False
               FieldName = 'Name_Key'
-              Width = -1
               Visible = False
             end
             item
               Expanded = False
               FieldName = 'MaterialType_Key'
-              Width = -1
               Visible = False
             end
             item
@@ -379,7 +383,6 @@ object MainForm: TMainForm
             item
               Expanded = False
               FieldName = 'MeasurementType_Key'
-              Width = -1
               Visible = False
             end
             item
@@ -432,11 +435,12 @@ object MainForm: TMainForm
           Left = 0
           Top = 21
           Width = 896
-          Height = 474
+          Height = 503
           Align = alClient
           DataField = 'Characteristics'
           DataSource = BDModule.MaterialsDS
           TabOrder = 0
+          ExplicitHeight = 474
         end
       end
       object TabSheet2: TTabSheet
@@ -456,14 +460,73 @@ object MainForm: TMainForm
           Left = 0
           Top = 21
           Width = 896
-          Height = 474
+          Height = 503
           Align = alClient
+          DataSource = BDModule.RecievedDS
+          PopupMenu = BDModule.popupReceived
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -12
           TitleFont.Name = 'Segoe UI'
           TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'Recieved_ID'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'MaterialName'
+              Width = 140
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Material_Key'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'Quantity'
+              Width = 140
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'recieve_date'
+              Width = 140
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'delivery_Key'
+              Width = 140
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'supplier_Key'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'employee_Key'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'Supplier'
+              Width = 140
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Employee'
+              Width = 140
+              Visible = True
+            end>
         end
       end
       object TabSheet3: TTabSheet
@@ -483,41 +546,56 @@ object MainForm: TMainForm
           Left = 0
           Top = 21
           Width = 896
-          Height = 474
+          Height = 503
           Align = alClient
+          DataSource = BDModule.DeliveriesDS
+          PopupMenu = BDModule.popupDeliveries
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -12
           TitleFont.Name = 'Segoe UI'
           TitleFont.Style = []
-        end
-      end
-      object TabSheet4: TTabSheet
-        Caption = #1055#1077#1088#1077#1076#1072#1095#1080
-        ImageIndex = 3
-        object Label5: TLabel
-          AlignWithMargins = True
-          Left = 3
-          Top = 3
-          Width = 890
-          Height = 15
-          Align = alTop
-          Caption = #1055#1077#1088#1077#1076#1072#1095#1080':'
-          ExplicitWidth = 57
-        end
-        object DBGrid4: TDBGrid
-          Left = 0
-          Top = 21
-          Width = 896
-          Height = 474
-          Align = alClient
-          TabOrder = 0
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -12
-          TitleFont.Name = 'Segoe UI'
-          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'delivery_ID'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'material_Key'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'MaterialName'
+              Width = 200
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'quantity'
+              Width = 200
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'delivery_date'
+              Width = 200
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'employee_Key'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'Employee'
+              Width = 200
+              Visible = True
+            end>
         end
       end
       object TabSheet5: TTabSheet
@@ -537,7 +615,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 21
           Width = 896
-          Height = 474
+          Height = 503
           Align = alClient
           DataSource = BDModule.EmployeeDS
           TabOrder = 0
@@ -550,62 +628,138 @@ object MainForm: TMainForm
             item
               Expanded = False
               FieldName = 'Employee_ID'
-              Width = 64
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'Familia'
-              Width = 116
+              Width = 115
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'Imya'
-              Width = 116
+              Width = 115
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'Otchestvo'
-              Width = 116
+              Width = 115
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Post'
+              Width = 115
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'Post_Key'
-              Width = 116
-              Visible = True
+              Visible = False
             end
             item
               Expanded = False
               FieldName = 'BirthDate'
-              Width = 116
+              Width = 115
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'Phone'
-              Width = 116
+              Width = 115
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'Email'
-              Width = 116
+              Width = 115
+              Visible = True
+            end>
+        end
+      end
+      object TabSheet7: TTabSheet
+        Caption = #1055#1086#1089#1090#1072#1074#1097#1080#1082#1080
+        ImageIndex = 6
+        object Label14: TLabel
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 890
+          Height = 15
+          Align = alTop
+          Caption = #1055#1086#1089#1090#1072#1074#1097#1080#1082#1080':'
+          ExplicitWidth = 73
+        end
+        object DBGrid7: TDBGrid
+          Left = 0
+          Top = 21
+          Width = 896
+          Height = 503
+          Align = alClient
+          DataSource = BDModule.SuppliersDS
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ID'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'CompanyName'
+              Width = 115
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Fam'
+              Width = 115
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Imya'
+              Width = 115
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Otec'
+              Width = 115
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Post'
+              Width = 115
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Post_Key'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'Phone'
+              Width = 115
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Email'
+              Width = 115
               Visible = True
             end>
         end
       end
     end
-  end
-  object ToolBar1: TToolBar
-    Left = 0
-    Top = 0
-    Width = 1150
-    Height = 29
-    Caption = 'ToolBar1'
-    TabOrder = 2
-    ExplicitWidth = 1146
   end
 end

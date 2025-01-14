@@ -83,6 +83,7 @@ object AddRecDialog: TAddRecDialog
       Font.Style = []
       ParentFont = False
       TabOrder = 0
+      OnClick = Button1Click
     end
     object Button2: TButton
       Left = 577
@@ -111,6 +112,7 @@ object AddRecDialog: TAddRecDialog
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnClick = Button3Click
     end
     object CountryRefButton: TButton
       Left = 424
@@ -166,6 +168,7 @@ object AddRecDialog: TAddRecDialog
       Height = 170
       DataField = 'Photo'
       DataSource = BDModule.MaterialsDS
+      Stretch = True
       TabOrder = 8
     end
     object NamesRefButton: TButton

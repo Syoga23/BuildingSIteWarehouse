@@ -146,6 +146,30 @@
             <Form>AddRecDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="AboutUnit.pas">
+            <Form>AboutForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="EmployeeRef.pas">
+            <Form>Employee</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="SuppliersRef.pas">
+            <Form>Suppliers</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ReceivedDialog.pas">
+            <Form>ReceivedForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="DeliveriesDialog.pas">
+            <Form>DeliveriesForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="RecievedReport.pas">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

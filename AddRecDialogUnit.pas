@@ -37,6 +37,8 @@ type
     procedure NamesRefButtonClick(Sender: TObject);
     procedure CountryRefButtonClick(Sender: TObject);
     procedure AddButtonClick(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -57,6 +59,55 @@ begin
 BDModule.MaterialsSQL.Post;
 BDModule.MaterialNamesSQL.Refresh;
 Close();
+end;
+
+procedure TAddRecDialog.Button1Click(Sender: TObject);
+begin
+  BDModule.MaterialsSQL.Edit;
+  BDModule.MaterialsSQL.FieldByName('Photo').Clear;
+end;
+
+procedure TAddRecDialog.Button3Click(Sender: TObject);
+var
+    BlobStream: TMemoryStream;
+    Field: TBlobField;
+    pict: TPicture;
+  const
+    MAX_WIDTH = 480;
+    MAX_HEIGHT = 480;
+begin
+  try
+    if BDModule.PicDialog.Execute then
+    begin
+      pict := TPicture.Create;
+      pict.LoadFromFile(BDModule.PicDialog.FileName);
+      if (pict.Width<=MAX_WIDTH)and(pict.Height<=MAX_HEIGHT)
+       then
+     begin
+      Pict.Free;
+      BlobStream := TMemoryStream.Create;
+      try
+        BlobStream.LoadFromFile(BDModule.PicDialog.FileName);
+        BlobStream.Position := 0;
+        DBImage1.Picture.LoadFromStream(BlobStream);
+        if BDModule.MaterialsSQL.Active then
+        begin
+          BDModule.MaterialsSQL.Edit;
+          Field := TBLobField(BDModule.MaterialsSQL.FieldByName('Photo'));
+          Field.LoadFromStream(BlobStream);
+          //BDModule.MaterialsSQL.Post;
+        end;
+      finally
+        BlobStream.Free;
+      end;
+     end
+     else begin
+       ShowMessage('Выбранное фото превышает максимальное разрешение: ' + IntToStr(MAX_WIDTH) + 'x' + IntToStr(MAX_HEIGHT) + '.');
+       Pict.Free;
+     end;
+    end;
+  finally
+  end;
 end;
 
 procedure TAddRecDialog.Button4Click(Sender: TObject);

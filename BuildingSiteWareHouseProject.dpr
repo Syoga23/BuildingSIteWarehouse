@@ -12,7 +12,13 @@ uses
   MaterialNamesUnit in 'MaterialNamesUnit.pas' {MaterialNames},
   MaterialsDialog in 'MaterialsDialog.pas' {MaterialNamesDialog},
   CountryDialogUnit in 'CountryDialogUnit.pas' {CountryDialog},
-  AddRecDialogUnit in 'AddRecDialogUnit.pas' {AddRecDialog};
+  AddRecDialogUnit in 'AddRecDialogUnit.pas' {AddRecDialog},
+  AboutUnit in 'AboutUnit.pas' {AboutForm},
+  EmployeeRef in 'EmployeeRef.pas' {Employee},
+  SuppliersRef in 'SuppliersRef.pas' {Suppliers},
+  ReceivedDialog in 'ReceivedDialog.pas' {ReceivedForm},
+  DeliveriesDialog in 'DeliveriesDialog.pas' {DeliveriesForm},
+  RecievedReport in 'RecievedReport.pas' {Form1};
 
 {$R *.res}
 
@@ -29,5 +35,11 @@ begin
   Application.CreateForm(TMaterialNamesDialog, MaterialNamesDialog);
   Application.CreateForm(TCountryDialog, CountryDialog);
   Application.CreateForm(TAddRecDialog, AddRecDialog);
+  Application.CreateForm(TAboutForm, AboutForm);
+  Application.CreateForm(TEmployee, Employee);
+  Application.CreateForm(TSuppliers, Suppliers);
+  Application.CreateForm(TReceivedForm, ReceivedForm);
+  Application.CreateForm(TDeliveriesForm, DeliveriesForm);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

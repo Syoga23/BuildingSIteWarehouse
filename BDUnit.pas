@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB, IniFiles, VCL.Forms, VCL.Dialogs,
   Vcl.Menus, System.Notification, System.ImageList, Vcl.ImgList, Vcl.Controls,
-  CountriesNamesRef, MaterialTypesRef, MeasuresRef, PostsRef;
+  CountriesNamesRef, MaterialTypesRef, MeasuresRef, PostsRef, Vcl.ExtDlgs,
+  AboutUnit, EmployeeRef, SuppliersRef, ReceivedDialog, DeliveriesDialog;
 
 type
   TBDModule = class(TDataModule)
@@ -15,7 +16,6 @@ type
     MainMenu: TMainMenu;
     N1: TMenuItem;
     N2: TMenuItem;
-    N3: TMenuItem;
     N4: TMenuItem;
     MaterialNamesDS: TDataSource;
     MaterialNamesSQL: TADOQuery;
@@ -49,7 +49,6 @@ type
     N7: TMenuItem;
     N8: TMenuItem;
     MaterialsSQLMaterialType: TStringField;
-    H1: TMenuItem;
     MaterialsSQLMeasures: TStringField;
     MaterialsSQLName: TStringField;
     DSNamesDialog: TDataSource;
@@ -62,17 +61,10 @@ type
     MaterialTypesSQLTypeName: TWideStringField;
     CountriesSQLCountry_ID: TAutoIncField;
     CountriesSQLCountryName: TWideStringField;
-    RecievedSQLReturn_ID: TAutoIncField;
-    RecievedSQLMaterial_Key: TIntegerField;
-    RecievedSQLQuantity: TIntegerField;
-    RecievedSQLrecieve_date: TWideStringField;
-    RecievedSQLdelivery_Key: TIntegerField;
-    RecievedSQLreciever_Key: TIntegerField;
     DeliveriesSQLdelivery_ID: TAutoIncField;
     DeliveriesSQLmaterial_Key: TIntegerField;
     DeliveriesSQLquantity: TIntegerField;
     DeliveriesSQLdelivery_date: TWideStringField;
-    DeliveriesSQLsupplier_Key: TIntegerField;
     EmployeeSQLEmployee_ID: TAutoIncField;
     EmployeeSQLFamilia: TWideStringField;
     EmployeeSQLImya: TWideStringField;
@@ -88,12 +80,65 @@ type
     CountryDialogCountry_ID: TAutoIncField;
     CountryDialogCountryName: TWideStringField;
     MaterialsSQLMadeCountry: TStringField;
+    PicDialog: TOpenPictureDialog;
+    SuppliersDS: TDataSource;
+    SuppliersSQL: TADOQuery;
+    SuppliersSQLID: TAutoIncField;
+    SuppliersSQLCompanyName: TWideStringField;
+    SuppliersSQLFam: TWideStringField;
+    SuppliersSQLImya: TWideStringField;
+    SuppliersSQLOtec: TWideStringField;
+    SuppliersSQLPhone: TWideStringField;
+    SuppliersSQLEmail: TWideStringField;
+    DeliveriesSQLMaterialName: TStringField;
+    EmployeeSQLPost: TStringField;
+    RecievedSQLMaterial_Key: TIntegerField;
+    RecievedSQLQuantity: TIntegerField;
+    RecievedSQLrecieve_date: TWideStringField;
+    RecievedSQLRecieved_ID: TAutoIncField;
+    RecievedSQLsupplier_Key: TIntegerField;
+    RecievedSQLemployee_Key: TIntegerField;
+    RecievedSQLdelivery_Key: TIntegerField;
+    RecievedSQLMaterialName: TStringField;
+    RecievedSQLПоставщик: TStringField;
+    RecievedSQLEmployee: TStringField;
+    DeliveriesSQLemployee_Key: TIntegerField;
+    DeliveriesSQLEmployee: TStringField;
+    N3: TMenuItem;
+    N9: TMenuItem;
+    N10: TMenuItem;
+    N11: TMenuItem;
+    popupReceived: TPopupMenu;
+    popupDeliveries: TPopupMenu;
+    D1: TMenuItem;
+    N12: TMenuItem;
+    N13: TMenuItem;
+    N14: TMenuItem;
+    N15: TMenuItem;
+    N16: TMenuItem;
+    N17: TMenuItem;
+    N18: TMenuItem;
     procedure DataModuleCreate(Sender: TObject);
     procedure N5Click(Sender: TObject);
     procedure N6Click(Sender: TObject);
     procedure N7Click(Sender: TObject);
     procedure N8Click(Sender: TObject);
     procedure MaterialNamesDSDataChange(Sender: TObject; Field: TField);
+    procedure N4Click(Sender: TObject);
+    procedure N9Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N10Click(Sender: TObject);
+    procedure N11Click(Sender: TObject);
+    procedure D1Click(Sender: TObject);
+    procedure N14Click(Sender: TObject);
+    procedure N12Click(Sender: TObject);
+    procedure N13Click(Sender: TObject);
+    procedure N15Click(Sender: TObject);
+    procedure N16Click(Sender: TObject);
+    procedure N17Click(Sender: TObject);
+    procedure N18Click(Sender: TObject);
+    procedure N20Click(Sender: TObject);
+    procedure N21Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -151,6 +196,11 @@ MaterialsSQL.Parameters.ParamByName('NameKey').Value := MaterialNamesSQL.FieldBy
 MaterialsSQL.Open;
 end;
 
+procedure TBDModule.N4Click(Sender: TObject);
+begin
+AboutForm.Show();
+end;
+
 procedure TBDModule.N5Click(Sender: TObject);
 begin
 MaterialTypes.Show();
@@ -169,6 +219,80 @@ end;
 procedure TBDModule.N8Click(Sender: TObject);
 begin
 Posts.Show();
+end;
+
+procedure TBDModule.N9Click(Sender: TObject);
+begin
+Suppliers.Show();
+end;
+
+procedure TBDModule.N10Click(Sender: TObject);
+begin
+ReceivedForm.Show();
+end;
+
+procedure TBDModule.N11Click(Sender: TObject);
+begin
+DeliveriesForm.Show();
+end;
+
+procedure TBDModule.D1Click(Sender: TObject);
+begin
+if MessageDlg('Вы точно хотите навсегда удалить выбранную запись?', mtWarning, [mbYes, mbNo], 0) = mrYes
+      then RecievedSQL.Delete;
+end;
+
+procedure TBDModule.N12Click(Sender: TObject);
+begin
+RecievedSQL.Edit;
+end;
+
+procedure TBDModule.N13Click(Sender: TObject);
+begin
+if RecievedSQL.State in [dsEdit]
+  then RecievedSQL.Post;
+end;
+
+procedure TBDModule.N14Click(Sender: TObject);
+begin
+RecievedSQL.Cancel;
+end;
+
+procedure TBDModule.N15Click(Sender: TObject);
+begin
+if MessageDlg('Вы точно хотите навсегда удалить выбранную запись?', mtWarning, [mbYes, mbNo], 0) = mrYes
+      then DeliveriesSQL.Delete;
+end;
+
+procedure TBDModule.N16Click(Sender: TObject);
+begin
+DeliveriesSQL.Cancel;
+end;
+
+procedure TBDModule.N17Click(Sender: TObject);
+begin
+DeliveriesSQL.Edit;
+end;
+
+procedure TBDModule.N18Click(Sender: TObject);
+begin
+if DeliveriesSQL.State in [dsEdit]
+  then DeliveriesSQL.Post;
+end;
+
+procedure TBDModule.N20Click(Sender: TObject);
+begin
+//приемка
+end;
+
+procedure TBDModule.N21Click(Sender: TObject);
+begin
+//сдача
+end;
+
+procedure TBDModule.N3Click(Sender: TObject);
+begin
+Employee.Show();
 end;
 
 end.
