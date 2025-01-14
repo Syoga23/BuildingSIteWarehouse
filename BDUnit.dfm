@@ -9,7 +9,7 @@ object BDModule: TBDModule
       'fo=False;User ID=Admin;Initial Catalog=BuildingSIteWarehouse;Dat' +
       'a Source=SERGEIPC\SQLSERVER2008'
     LoginPrompt = False
-    Provider = 'SQLOLEDB'
+    Provider = 'SQLOLEDB.1'
     Left = 40
     Top = 32
   end
@@ -19,6 +19,7 @@ object BDModule: TBDModule
     Top = 32
   end
   object MaterialsSQL: TADOQuery
+    Active = True
     Connection = Connection
     CursorType = ctStatic
     Parameters = <
@@ -35,7 +36,28 @@ object BDModule: TBDModule
     Left = 128
     Top = 32
     object MaterialsSQLMaterial_ID: TIntegerField
+      DisplayLabel = 'ID'
       FieldName = 'Material_ID'
+    end
+    object MaterialsSQLName: TStringField
+      DisplayLabel = #1048#1084#1103
+      FieldKind = fkLookup
+      FieldName = 'Name'
+      LookupDataSet = MaterialNamesSQL
+      LookupKeyFields = 'Name_ID'
+      LookupResultField = 'Name'
+      KeyFields = 'Name_Key'
+      Lookup = True
+    end
+    object MaterialsSQLMadeCountry: TStringField
+      DisplayLabel = #1057#1090#1088#1072#1085#1072
+      FieldKind = fkLookup
+      FieldName = 'MadeCountry'
+      LookupDataSet = CountryDialog
+      LookupKeyFields = 'Country_ID'
+      LookupResultField = 'CountryName'
+      KeyFields = 'MadeCountry_Key'
+      Lookup = True
     end
     object MaterialsSQLName_Key: TIntegerField
       FieldName = 'Name_Key'
@@ -44,22 +66,27 @@ object BDModule: TBDModule
       FieldName = 'MaterialType_Key'
     end
     object MaterialsSQLQuantity: TIntegerField
+      DisplayLabel = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
       FieldName = 'Quantity'
     end
     object MaterialsSQLMeasurementType_Key: TIntegerField
       FieldName = 'MeasurementType_Key'
     end
     object MaterialsSQLCharacteristics: TWideStringField
+      DisplayLabel = #1061#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080
       FieldName = 'Characteristics'
       Size = 255
     end
     object MaterialsSQLMadeCountry_Key: TIntegerField
+      DisplayLabel = #1057#1090#1088#1072#1085#1072
       FieldName = 'MadeCountry_Key'
     end
     object MaterialsSQLPhoto: TBlobField
+      DisplayLabel = #1060#1086#1090#1086
       FieldName = 'Photo'
     end
     object MaterialsSQLMaterialType: TStringField
+      DisplayLabel = #1042#1080#1076' '#1084#1072#1090#1077#1088#1080#1072#1083#1072
       FieldKind = fkLookup
       FieldName = 'MaterialType'
       LookupDataSet = MaterialTypesSQL
@@ -69,21 +96,13 @@ object BDModule: TBDModule
       Lookup = True
     end
     object MaterialsSQLMeasures: TStringField
+      DisplayLabel = #1045#1076#1080#1085#1080#1094#1072' '#1080#1079#1084#1077#1088#1077#1085#1080#1103
       FieldKind = fkLookup
       FieldName = 'Measures'
       LookupDataSet = MeasureTypesSQL
       LookupKeyFields = 'MeasurementType_ID'
       LookupResultField = 'MeasureName'
       KeyFields = 'MeasurementType_Key'
-      Lookup = True
-    end
-    object MaterialsSQLName: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Name'
-      LookupDataSet = MaterialNamesSQL
-      LookupKeyFields = 'Name_ID'
-      LookupResultField = 'Name'
-      KeyFields = 'Name_Key'
       Lookup = True
     end
   end
@@ -99,9 +118,6 @@ object BDModule: TBDModule
     end
     object N2: TMenuItem
       Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082#1080
-      object V1: TMenuItem
-        Caption = #1052#1072#1090#1077#1088#1080#1072#1083#1099
-      end
       object N5: TMenuItem
         Caption = #1042#1080#1076#1099' '#1084#1072#1090#1077#1088#1080#1072#1083#1086#1074
         OnClick = N5Click
@@ -142,9 +158,11 @@ object BDModule: TBDModule
     Left = 128
     Top = 88
     object MaterialNamesSQLName_ID: TIntegerField
+      DisplayLabel = 'ID'
       FieldName = 'Name_ID'
     end
     object MaterialNamesSQLName: TWideStringField
+      DisplayLabel = #1053#1072#1079#1074#1072#1085#1080#1077
       FieldName = 'Name'
       Size = 255
     end
@@ -163,6 +181,16 @@ object BDModule: TBDModule
       'SELECT * FROM MeasureTypesRef')
     Left = 128
     Top = 144
+    object MeasureTypesSQLMeasurementType_ID: TAutoIncField
+      DisplayLabel = 'ID'
+      FieldName = 'MeasurementType_ID'
+      ReadOnly = True
+    end
+    object MeasureTypesSQLMeasureName: TWideStringField
+      DisplayLabel = #1045#1076#1080#1085#1080#1094#1072' '#1080#1079#1084#1077#1088#1077#1085#1080#1103
+      FieldName = 'MeasureName'
+      Size = 255
+    end
   end
   object MaterialTypesDS: TDataSource
     DataSet = MaterialTypesSQL
@@ -178,6 +206,16 @@ object BDModule: TBDModule
       'SELECT * FROM MaterialTypesRef')
     Left = 128
     Top = 200
+    object MaterialTypesSQLMaterialType_ID: TAutoIncField
+      DisplayLabel = 'ID'
+      FieldName = 'MaterialType_ID'
+      ReadOnly = True
+    end
+    object MaterialTypesSQLTypeName: TWideStringField
+      DisplayLabel = #1042#1080#1076' '#1084#1072#1090#1077#1088#1080#1072#1083#1072
+      FieldName = 'TypeName'
+      Size = 255
+    end
   end
   object CountriesDS: TDataSource
     DataSet = CountriesSQL
@@ -193,6 +231,16 @@ object BDModule: TBDModule
       'SELECT * FROM CountriesRef')
     Left = 128
     Top = 256
+    object CountriesSQLCountry_ID: TAutoIncField
+      DisplayLabel = 'ID'
+      FieldName = 'Country_ID'
+      ReadOnly = True
+    end
+    object CountriesSQLCountryName: TWideStringField
+      DisplayLabel = #1057#1090#1088#1072#1085#1072
+      FieldName = 'CountryName'
+      Size = 255
+    end
   end
   object RecievedDS: TDataSource
     DataSet = RecievedSQL
@@ -208,6 +256,26 @@ object BDModule: TBDModule
       'SELECT * FROM Recieved')
     Left = 320
     Top = 32
+    object RecievedSQLReturn_ID: TAutoIncField
+      FieldName = 'Return_ID'
+      ReadOnly = True
+    end
+    object RecievedSQLMaterial_Key: TIntegerField
+      FieldName = 'Material_Key'
+    end
+    object RecievedSQLQuantity: TIntegerField
+      FieldName = 'Quantity'
+    end
+    object RecievedSQLrecieve_date: TWideStringField
+      FieldName = 'recieve_date'
+      Size = 10
+    end
+    object RecievedSQLdelivery_Key: TIntegerField
+      FieldName = 'delivery_Key'
+    end
+    object RecievedSQLreciever_Key: TIntegerField
+      FieldName = 'reciever_Key'
+    end
   end
   object DeliveriesDS: TDataSource
     DataSet = DeliveriesSQL
@@ -223,6 +291,23 @@ object BDModule: TBDModule
       'SELECT * FROM Deliveries')
     Left = 320
     Top = 88
+    object DeliveriesSQLdelivery_ID: TAutoIncField
+      FieldName = 'delivery_ID'
+      ReadOnly = True
+    end
+    object DeliveriesSQLmaterial_Key: TIntegerField
+      FieldName = 'material_Key'
+    end
+    object DeliveriesSQLquantity: TIntegerField
+      FieldName = 'quantity'
+    end
+    object DeliveriesSQLdelivery_date: TWideStringField
+      FieldName = 'delivery_date'
+      Size = 10
+    end
+    object DeliveriesSQLsupplier_Key: TIntegerField
+      FieldName = 'supplier_Key'
+    end
   end
   object EmployeeDS: TDataSource
     DataSet = EmployeeSQL
@@ -238,6 +323,37 @@ object BDModule: TBDModule
       'SELECT * FROM Employee')
     Left = 320
     Top = 144
+    object EmployeeSQLEmployee_ID: TAutoIncField
+      FieldName = 'Employee_ID'
+      ReadOnly = True
+    end
+    object EmployeeSQLFamilia: TWideStringField
+      FieldName = 'Familia'
+      Size = 255
+    end
+    object EmployeeSQLImya: TWideStringField
+      FieldName = 'Imya'
+      Size = 255
+    end
+    object EmployeeSQLOtchestvo: TWideStringField
+      FieldName = 'Otchestvo'
+      Size = 255
+    end
+    object EmployeeSQLPost_Key: TIntegerField
+      FieldName = 'Post_Key'
+    end
+    object EmployeeSQLBirthDate: TWideStringField
+      FieldName = 'BirthDate'
+      Size = 10
+    end
+    object EmployeeSQLPhone: TWideStringField
+      FieldName = 'Phone'
+      Size = 100
+    end
+    object EmployeeSQLEmail: TWideStringField
+      FieldName = 'Email'
+      Size = 255
+    end
   end
   object PostsDS: TDataSource
     DataSet = PostsSQL
@@ -253,6 +369,16 @@ object BDModule: TBDModule
       'SELECT * FROM PostsRef')
     Left = 320
     Top = 200
+    object PostsSQLPost_ID: TAutoIncField
+      DisplayLabel = 'ID'
+      FieldName = 'Post_ID'
+      ReadOnly = True
+    end
+    object PostsSQLName: TWideStringField
+      DisplayLabel = #1044#1086#1083#1078#1085#1086#1089#1090#1100
+      FieldName = 'Name'
+      Size = 255
+    end
   end
   object ImageList1: TImageList
     Left = 104
@@ -412,11 +538,38 @@ object BDModule: TBDModule
     Left = 496
     Top = 32
     object IntegerField1: TIntegerField
+      DisplayLabel = 'ID'
       FieldName = 'Name_ID'
     end
     object WideStringField1: TWideStringField
+      DisplayLabel = #1053#1072#1079#1074#1072#1085#1080#1077
       FieldName = 'Name'
       Size = 255
     end
+  end
+  object CountryDialog: TADOQuery
+    Active = True
+    Connection = Connection
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT * FROM CountriesRef')
+    Left = 496
+    Top = 88
+    object CountryDialogCountry_ID: TAutoIncField
+      DisplayLabel = 'ID'
+      FieldName = 'Country_ID'
+      ReadOnly = True
+    end
+    object CountryDialogCountryName: TWideStringField
+      DisplayLabel = #1057#1090#1088#1072#1085#1072
+      FieldName = 'CountryName'
+      Size = 255
+    end
+  end
+  object CountryDialogDS: TDataSource
+    DataSet = CountryDialog
+    Left = 592
+    Top = 88
   end
 end

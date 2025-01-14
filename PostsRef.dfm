@@ -1,7 +1,7 @@
 object Posts: TPosts
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082' '#1076#1086#1083#1078#1085#1086#1089#1090#1077#1081
   ClientHeight = 729
   ClientWidth = 1108
   Color = clBtnFace
@@ -20,9 +20,8 @@ object Posts: TPosts
     Caption = 'Panel1'
     ShowCaption = False
     TabOrder = 0
-    ExplicitLeft = -379
-    ExplicitTop = 401
-    ExplicitWidth = 1007
+    ExplicitTop = 687
+    ExplicitWidth = 1104
     object DBNavigator1: TDBNavigator
       AlignWithMargins = True
       Left = 772
@@ -33,7 +32,7 @@ object Posts: TPosts
       DataSource = BDModule.PostsDS
       Align = alRight
       TabOrder = 0
-      ExplicitLeft = 671
+      ExplicitLeft = 768
     end
     object Button1: TButton
       AlignWithMargins = True
@@ -48,7 +47,7 @@ object Posts: TPosts
       Align = alRight
       Caption = #1047#1072#1082#1088#1099#1090#1100
       TabOrder = 1
-      ExplicitLeft = 926
+      ExplicitLeft = 1023
     end
   end
   object Panel2: TPanel
@@ -60,10 +59,8 @@ object Posts: TPosts
     Caption = 'Panel1'
     ShowCaption = False
     TabOrder = 1
-    ExplicitLeft = -379
-    ExplicitTop = -169
-    ExplicitWidth = 1007
-    ExplicitHeight = 611
+    ExplicitWidth = 1104
+    ExplicitHeight = 687
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1

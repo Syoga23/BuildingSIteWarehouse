@@ -1,7 +1,7 @@
 object MaterialTypes: TMaterialTypes
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082' '#1074#1080#1076#1086#1074' '#1084#1072#1090#1077#1088#1080#1072#1083#1086#1074
   ClientHeight = 737
   ClientWidth = 1121
   Color = clBtnFace
@@ -20,9 +20,8 @@ object MaterialTypes: TMaterialTypes
     Caption = 'Panel1'
     ShowCaption = False
     TabOrder = 0
-    ExplicitLeft = -344
-    ExplicitTop = 401
-    ExplicitWidth = 972
+    ExplicitTop = 695
+    ExplicitWidth = 1117
     object DBNavigator1: TDBNavigator
       AlignWithMargins = True
       Left = 785
@@ -33,7 +32,7 @@ object MaterialTypes: TMaterialTypes
       DataSource = BDModule.MaterialTypesDS
       Align = alRight
       TabOrder = 0
-      ExplicitTop = 5
+      ExplicitLeft = 781
     end
     object Button1: TButton
       AlignWithMargins = True
@@ -49,7 +48,7 @@ object MaterialTypes: TMaterialTypes
       Caption = #1047#1072#1082#1088#1099#1090#1100
       TabOrder = 1
       OnClick = Button1Click
-      ExplicitLeft = 547
+      ExplicitLeft = 1036
     end
   end
   object Panel2: TPanel
@@ -61,9 +60,8 @@ object MaterialTypes: TMaterialTypes
     Caption = 'Panel1'
     ShowCaption = False
     TabOrder = 1
-    ExplicitTop = 8
-    ExplicitWidth = 628
-    ExplicitHeight = 401
+    ExplicitWidth = 1117
+    ExplicitHeight = 695
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1

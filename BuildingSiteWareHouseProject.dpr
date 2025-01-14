@@ -10,7 +10,9 @@ uses
   MeasuresRef in 'MeasuresRef.pas' {Measures},
   PostsRef in 'PostsRef.pas' {Posts},
   MaterialNamesUnit in 'MaterialNamesUnit.pas' {MaterialNames},
-  MaterialsDialog in 'MaterialsDialog.pas' {MaterialNamesDialog};
+  MaterialsDialog in 'MaterialsDialog.pas' {MaterialNamesDialog},
+  CountryDialogUnit in 'CountryDialogUnit.pas' {CountryDialog},
+  AddRecDialogUnit in 'AddRecDialogUnit.pas' {AddRecDialog};
 
 {$R *.res}
 
@@ -25,5 +27,7 @@ begin
   Application.CreateForm(TPosts, Posts);
   Application.CreateForm(TMaterialNames, MaterialNames);
   Application.CreateForm(TMaterialNamesDialog, MaterialNamesDialog);
+  Application.CreateForm(TCountryDialog, CountryDialog);
+  Application.CreateForm(TAddRecDialog, AddRecDialog);
   Application.Run;
 end.

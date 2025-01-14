@@ -1,7 +1,7 @@
 object Countries: TCountries
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082' '#1089#1090#1088#1072#1085
   ClientHeight = 737
   ClientWidth = 1119
   Color = clBtnFace
@@ -20,9 +20,8 @@ object Countries: TCountries
     Caption = 'Panel1'
     ShowCaption = False
     TabOrder = 0
-    ExplicitLeft = -344
-    ExplicitTop = 401
-    ExplicitWidth = 972
+    ExplicitTop = 695
+    ExplicitWidth = 1115
     object DBNavigator1: TDBNavigator
       AlignWithMargins = True
       Left = 783
@@ -33,7 +32,7 @@ object Countries: TCountries
       DataSource = BDModule.CountriesDS
       Align = alRight
       TabOrder = 0
-      ExplicitLeft = 636
+      ExplicitLeft = 779
     end
     object Button1: TButton
       AlignWithMargins = True
@@ -49,7 +48,7 @@ object Countries: TCountries
       Caption = #1047#1072#1082#1088#1099#1090#1100
       TabOrder = 1
       OnClick = Button1Click
-      ExplicitLeft = 891
+      ExplicitLeft = 1034
     end
   end
   object Panel2: TPanel
@@ -61,10 +60,8 @@ object Countries: TCountries
     Caption = 'Panel1'
     ShowCaption = False
     TabOrder = 1
-    ExplicitLeft = -344
-    ExplicitTop = -186
-    ExplicitWidth = 972
-    ExplicitHeight = 628
+    ExplicitWidth = 1115
+    ExplicitHeight = 695
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1

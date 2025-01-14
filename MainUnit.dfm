@@ -29,6 +29,7 @@ object MainForm: TMainForm
     Height = 768
     Align = alLeft
     TabOrder = 0
+    ExplicitHeight = 767
     DesignSize = (
       241
       768)
@@ -40,7 +41,7 @@ object MainForm: TMainForm
       Height = 15
       Align = alTop
       Caption = #1057#1090#1088#1086#1080#1090#1077#1083#1100#1085#1099#1081' '#1084#1072#1090#1077#1088#1080#1072#1083':'
-      ExplicitWidth = 760
+      ExplicitWidth = 140
     end
     object DBGrid1: TDBGrid
       Left = 1
@@ -49,12 +50,24 @@ object MainForm: TMainForm
       Height = 745
       Align = alClient
       DataSource = BDModule.MaterialNamesDS
+      Options = [dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -12
       TitleFont.Name = 'Segoe UI'
       TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'Name_ID'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'Name'
+          Visible = True
+        end>
     end
     object PencilButtonNames: TButton
       Left = 213
@@ -75,6 +88,8 @@ object MainForm: TMainForm
     Height = 768
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 902
+    ExplicitHeight = 767
     object Splitter2: TSplitter
       Left = 1
       Top = 241
@@ -104,6 +119,7 @@ object MainForm: TMainForm
       Font.Style = []
       ParentFont = False
       TabOrder = 0
+      ExplicitWidth = 898
       object Label6: TLabel
         Left = 25
         Top = 21
@@ -153,6 +169,7 @@ object MainForm: TMainForm
         Height = 21
         DataField = 'Material_ID'
         DataSource = BDModule.MaterialsDS
+        Enabled = False
         ReadOnly = True
         TabOrder = 0
       end
@@ -213,7 +230,7 @@ object MainForm: TMainForm
       object Button2: TButton
         Left = 712
         Top = 194
-        Width = 81
+        Width = 75
         Height = 31
         Caption = #1059#1076#1072#1083#1080#1090#1100
         Font.Charset = DEFAULT_CHARSET
@@ -225,9 +242,9 @@ object MainForm: TMainForm
         TabOrder = 7
       end
       object Button3: TButton
-        Left = 799
+        Left = 800
         Top = 194
-        Width = 82
+        Width = 81
         Height = 31
         Caption = #1042#1099#1073#1088#1072#1090#1100' '#1092#1086#1090#1086
         Font.Charset = DEFAULT_CHARSET
@@ -245,23 +262,43 @@ object MainForm: TMainForm
         Height = 23
         Caption = '...'
         TabOrder = 9
+        OnClick = CountryRefButtonClick
       end
       object DBEdit4: TDBEdit
         Left = 160
         Top = 203
         Width = 265
         Height = 21
-        DataField = 'MadeCountry_Key'
+        DataField = 'MadeCountry'
         DataSource = BDModule.MaterialsDS
         TabOrder = 10
       end
-      object Button1: TButton
+      object AddButton: TButton
         Left = 490
         Top = 203
-        Width = 121
+        Width = 103
+        Height = 23
+        Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1087#1080#1089#1100
+        TabOrder = 11
+        OnClick = AddButtonClick
+      end
+      object EditButton: TButton
+        Left = 490
+        Top = 164
+        Width = 103
         Height = 23
         Caption = #1048#1079#1084#1077#1085#1080#1090#1100' '#1079#1072#1087#1080#1089#1100
-        TabOrder = 11
+        TabOrder = 12
+        OnClick = EditButtonClick
+      end
+      object DelButton: TButton
+        Left = 490
+        Top = 128
+        Width = 103
+        Height = 23
+        Caption = #1059#1076#1072#1083#1080#1090#1100' '#1079#1072#1087#1080#1089#1100
+        TabOrder = 13
+        OnClick = DelButtonClick
       end
     end
     object PageControl1: TPageControl
@@ -269,7 +306,7 @@ object MainForm: TMainForm
       Top = 244
       Width = 904
       Height = 523
-      ActivePage = TabSheet2
+      ActivePage = TabSheet5
       Align = alClient
       BiDiMode = bdLeftToRight
       MultiLine = True
@@ -277,9 +314,107 @@ object MainForm: TMainForm
       TabOrder = 1
       TabPosition = tpBottom
       StyleElements = [seFont, seClient]
-      ExplicitTop = 252
-      ExplicitHeight = 515
       object TabSheet1: TTabSheet
+        Caption = #1058#1086#1074#1072#1088#1099
+        ImageIndex = 5
+        object Label13: TLabel
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 890
+          Height = 15
+          Align = alTop
+          Caption = #1058#1086#1074#1072#1088#1099':'
+          ExplicitWidth = 44
+        end
+        object DBGrid6: TDBGrid
+          Left = 0
+          Top = 21
+          Width = 896
+          Height = 474
+          Align = alClient
+          DataSource = BDModule.MaterialsDS
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'Material_ID'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Name'
+              Width = 107
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'MadeCountry'
+              Width = 103
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Name_Key'
+              Width = -1
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'MaterialType_Key'
+              Width = -1
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'Quantity'
+              Width = 85
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'MeasurementType_Key'
+              Width = -1
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'Characteristics'
+              Width = 99
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'MadeCountry_Key'
+              Width = 104
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Photo'
+              Width = 69
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'MaterialType'
+              Width = 111
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Measures'
+              Width = 130
+              Visible = True
+            end>
+        end
+      end
+      object TabSheet6: TTabSheet
         Caption = #1061#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080
         DoubleBuffered = True
         ParentDoubleBuffered = False
@@ -291,8 +426,6 @@ object MainForm: TMainForm
           Height = 15
           Align = alTop
           Caption = #1061#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080' '#1084#1072#1090#1077#1088#1080#1072#1083#1072':'
-          ExplicitLeft = 0
-          ExplicitTop = 0
           ExplicitWidth = 153
         end
         object DBMemo1: TDBMemo
@@ -304,8 +437,6 @@ object MainForm: TMainForm
           DataField = 'Characteristics'
           DataSource = BDModule.MaterialsDS
           TabOrder = 0
-          ExplicitTop = 19
-          ExplicitHeight = 436
         end
       end
       object TabSheet2: TTabSheet
@@ -345,8 +476,8 @@ object MainForm: TMainForm
           Width = 890
           Height = 15
           Align = alTop
-          Caption = #1061#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080' '#1084#1072#1090#1077#1088#1080#1072#1083#1072':'
-          ExplicitWidth = 153
+          Caption = #1057#1076#1072#1085#1086':'
+          ExplicitWidth = 37
         end
         object DBGrid3: TDBGrid
           Left = 0
@@ -372,8 +503,8 @@ object MainForm: TMainForm
           Width = 890
           Height = 15
           Align = alTop
-          Caption = #1061#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080' '#1084#1072#1090#1077#1088#1080#1072#1083#1072':'
-          ExplicitWidth = 153
+          Caption = #1055#1077#1088#1077#1076#1072#1095#1080':'
+          ExplicitWidth = 57
         end
         object DBGrid4: TDBGrid
           Left = 0
@@ -399,8 +530,8 @@ object MainForm: TMainForm
           Width = 890
           Height = 15
           Align = alTop
-          Caption = #1061#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080' '#1084#1072#1090#1077#1088#1080#1072#1083#1072':'
-          ExplicitWidth = 153
+          Caption = #1057#1086#1090#1088#1091#1076#1085#1080#1082#1080':'
+          ExplicitWidth = 69
         end
         object DBGrid5: TDBGrid
           Left = 0
@@ -408,12 +539,62 @@ object MainForm: TMainForm
           Width = 896
           Height = 474
           Align = alClient
+          DataSource = BDModule.EmployeeDS
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -12
           TitleFont.Name = 'Segoe UI'
           TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'Employee_ID'
+              Width = 64
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Familia'
+              Width = 116
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Imya'
+              Width = 116
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Otchestvo'
+              Width = 116
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Post_Key'
+              Width = 116
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'BirthDate'
+              Width = 116
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Phone'
+              Width = 116
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Email'
+              Width = 116
+              Visible = True
+            end>
         end
       end
     end
@@ -425,5 +606,6 @@ object MainForm: TMainForm
     Height = 29
     Caption = 'ToolBar1'
     TabOrder = 2
+    ExplicitWidth = 1146
   end
 end
